@@ -1,0 +1,764 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"ta",
+				"tambah_asset"
+			],
+			[
+				"ph",
+				"phone"
+			],
+			[
+				"la",
+				"last_name"
+			],
+			[
+				"data",
+				"data_pegawai"
+			],
+			[
+				"id_",
+				"id_jabatan"
+			],
+			[
+				"nama_ka",
+				"nama_kategori"
+			],
+			[
+				"kode_ka",
+				"kode_kategori"
+			],
+			[
+				"data_ka",
+				"data_kategori"
+			],
+			[
+				"e",
+				"echo	echo \"…\""
+			],
+			[
+				"var_dum",
+				"var_dump"
+			],
+			[
+				"wh",
+				"where"
+			],
+			[
+				"tbl_",
+				"tbl_ruangan"
+			],
+			[
+				"tbl",
+				"tbl_ruangan"
+			],
+			[
+				"re",
+				"redirect"
+			],
+			[
+				"for",
+				"foreach	foreach …"
+			],
+			[
+				"sele",
+				"selectpicker"
+			],
+			[
+				"ac",
+				"action	Attr"
+			],
+			[
+				"bor",
+				"border-radius"
+			],
+			[
+				"s",
+				"style	Attr"
+			],
+			[
+				"mar",
+				"margin-bottom"
+			],
+			[
+				"text",
+				"text-decoration"
+			],
+			[
+				"co",
+				"color"
+			],
+			[
+				"e8",
+				"e8272d"
+			],
+			[
+				"bac",
+				"background-color"
+			],
+			[
+				"bord",
+				"border-top"
+			],
+			[
+				"ses",
+				"session"
+			],
+			[
+				"user",
+				"username"
+			],
+			[
+				"com",
+				"company"
+			],
+			[
+				"p",
+				"placeholder"
+			],
+			[
+				"inpu",
+				"input-lg"
+			],
+			[
+				"inp",
+				"input-lg"
+			],
+			[
+				"id_mk",
+				"id_mk"
+			],
+			[
+				"id",
+				"id_dosen"
+			],
+			[
+				"c",
+				"class	Attr"
+			],
+			[
+				"form",
+				"form-horizontal"
+			],
+			[
+				"session_id",
+				"session_id_mk"
+			],
+			[
+				"ip",
+				"input_jawaban"
+			],
+			[
+				"res",
+				"result"
+			],
+			[
+				"f",
+				"foreach	foreach …"
+			],
+			[
+				"demo",
+				"demo_login"
+			],
+			[
+				"ce",
+				"cek_enroll"
+			],
+			[
+				"en",
+				"enroll_key"
+			],
+			[
+				"result",
+				"result_array"
+			],
+			[
+				"mode",
+				"model_matkul"
+			],
+			[
+				"tampi",
+				"tampil_nilai"
+			],
+			[
+				"q",
+				"query"
+			],
+			[
+				"us",
+				"username"
+			],
+			[
+				"u",
+				"username"
+			],
+			[
+				"th",
+				"this"
+			],
+			[
+				"a",
+				"ambiluser"
+			],
+			[
+				"nu",
+				"num_rows"
+			],
+			[
+				"ke",
+				"keluar"
+			],
+			[
+				"se",
+				"session"
+			],
+			[
+				"am",
+				"ambil"
+			],
+			[
+				"hai",
+				"hasil"
+			],
+			[
+				"inpt",
+				"input"
+			],
+			[
+				"ba",
+				"background-color"
+			],
+			[
+				"log",
+				"logout"
+			],
+			[
+				"tamp",
+				"tampil_matkul_dosen"
+			],
+			[
+				"mat",
+				"matkul_dosen"
+			],
+			[
+				"lis",
+				"list_user"
+			],
+			[
+				"tam",
+				"tampil_matkul_dosen"
+			],
+			[
+				"ju",
+				"jumlah"
+			],
+			[
+				"list",
+				"list_matkul"
+			],
+			[
+				"model",
+				"model_matkul"
+			],
+			[
+				"fr",
+				"from"
+			],
+			[
+				"op",
+				"option	Tag"
+			],
+			[
+				"nama",
+				"nama_matkul"
+			],
+			[
+				"ins",
+				"insert_matkul"
+			],
+			[
+				"Sta",
+				"status"
+			],
+			[
+				"stat",
+				"status"
+			],
+			[
+				"sta",
+				"status"
+			],
+			[
+				"passwo",
+				"password"
+			],
+			[
+				"print",
+				"print_r"
+			],
+			[
+				"lsit",
+				"list_user"
+			],
+			[
+				"rest",
+				"rest_client"
+			],
+			[
+				"bo",
+				"border-color"
+			],
+			[
+				"b",
+				"border-bottom"
+			],
+			[
+				"password",
+				"fbsql_password"
+			],
+			[
+				"base_",
+				"base_url"
+			],
+			[
+				"pass",
+				"password"
+			],
+			[
+				"padd",
+				"padding-top"
+			],
+			[
+				"marg",
+				"margin-top"
+			],
+			[
+				"pu",
+				"public"
+			],
+			[
+				"da",
+				"dashboard"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"bas",
+				"basic"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"lint",
+				"SublimeLinter: Next Error"
+			],
+			[
+				"Package Control: insta",
+				"Package Control: Install Package"
+			],
+			[
+				"",
+				"Bookmarks: Clear All"
+			]
+		],
+		"width": 416.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/D/xampp/htdocs/asset/application/views/data_kategori.php",
+		"/D/xampp/htdocs/asset/application/config/config.php",
+		"/D/xampp/htdocs/asset/application/controllers/kelola_asset.php",
+		"/D/xampp/htdocs/asset/application/views/content_wrapper.php",
+		"/D/xampp/htdocs/asset/application/views/tambah_asset.php",
+		"/E/PROYEK/tambahan telkom blitar.txt",
+		"/C/Users/Januar Fonti/AppData/Local/Temp/Rar$DIa0.983/sql.sql",
+		"/C/Users/Januar Fonti/AppData/Local/Temp/Rar$DIa0.028/index.php",
+		"/D/xampp/htdocs/tanggal/db.php",
+		"/D/xampp/htdocs/tanggal/index.html",
+		"/D/xampp/htdocs/tanggal/js/bootstrap-datepicker.js",
+		"/D/xampp/htdocs/asset/application/views/mutasi.php",
+		"/D/xampp/htdocs/travel/application/views/auth/create_user.php",
+		"/D/xampp/htdocs/asset/application/views/ubah_kategori.php",
+		"/D/xampp/htdocs/asset/application/views/asset.php",
+		"/D/xampp/htdocs/asset/application/models/model_master.php",
+		"/D/xampp/htdocs/asset/application/views/detail_kantor.php",
+		"/D/xampp/htdocs/asset/application/views/data_kantor.php",
+		"/D/xampp/htdocs/asset/assets/css/datepicker.css",
+		"/D/xampp/htdocs/asset/assets/css/datepicker3.css",
+		"/D/xampp/htdocs/asset/application/config/ion_auth.php",
+		"/D/xampp/htdocs/asset/application/controllers/dashboard.php",
+		"/D/xampp/htdocs/asset/application/controllers/auth.php",
+		"/D/xampp/htdocs/travel/application/views/auth/index.php",
+		"/D/xampp/htdocs/travel/application/config/autoload.php",
+		"/D/xampp/htdocs/asset/application/views/data_pegawai.php",
+		"/D/xampp/htdocs/asset/application/views/ubah_pegawai.php",
+		"/D/xampp/htdocs/asset/application/views/auth/edit_user.php",
+		"/D/xampp/htdocs/asset/application/controllers/master_data.php",
+		"/D/xampp/htdocs/asset/application/language/english/auth_lang.php",
+		"/D/xampp/htdocs/asset/application/language/english/ion_auth_lang.php",
+		"/D/xampp/htdocs/asset/application/views/dashboard.php",
+		"/C/Users/Januar Fonti/AppData/Local/Temp/Rar$EXa0.759/jquery-ui-1.11.0.custom/index.html",
+		"/D/xampp/htdocs/tangga.txt",
+		"/D/xampp/htdocs/asset/application/libraries/Ion_auth.php",
+		"/D/xampp/htdocs/asset/application/views/data_ruangan.php",
+		"/D/xampp/htdocs/asset/application/views/detail_ruangan.php",
+		"/D/xampp/htdocs/asset/application/views/ubah_ruangan.php",
+		"/D/xampp/htdocs/asset/application/views/auth/create_user.php",
+		"/D/xampp/htdocs/asset/application/views/detail_pegawai.php",
+		"/D/xampp/htdocs/asset/application/views/ubah_pegawaii.php",
+		"/D/xampp/htdocs/asset/application/language/indonesian/auth_lang.php",
+		"/D/xampp/htdocs/asset/application/controllers/coba.php",
+		"/D/xampp/htdocs/asset/application/controllers/asset.php",
+		"/D/xampp/htdocs/travel/application/controllers/auth.php",
+		"/D/xampp/htdocs/travel/application/views/auth/edit_user.php",
+		"/D/xampp/htdocs/asset/system/helpers/language_helper.php",
+		"/D/xampp/htdocs/asset/application/language/indonesian/ion_auth_lang.php",
+		"/D/xampp/htdocs/asset/application/views/master_data.php",
+		"/D/xampp/htdocs/asset/application/config/routes.php",
+		"/D/xampp/htdocs/travel/application/views/home.php",
+		"/D/xampp/htdocs/travel/application/controllers/home.php",
+		"/D/xampp/htdocs/asset/application/views/ubah_jabatan.php",
+		"/D/xampp/htdocs/asset/application/views/data_jabatan.php",
+		"/D/xampp/htdocs/asset/application/views/ubah_kantor.php",
+		"/D/xampp/htdocs/asset/assets/css/style.css",
+		"/D/xampp/htdocs/asset/template/input_kantor.php",
+		"/D/xampp/htdocs/asset/template/input_ruangan.php",
+		"/C/Users/Januar Fonti/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/D/xampp/htdocs/asset/template/menu_utama.php",
+		"/D/xampp/htdocs/asset/application/models/ion_auth_model.php",
+		"/D/xampp/htdocs/asset/system/libraries/Pagination.php",
+		"/C/Users/Januar Fonti/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/D/xampp/htdocs/asset/application/config/autoload.php",
+		"/D/xampp/htdocs/elearning/assets/css/style.css",
+		"/D/xampp/htdocs/asset/application/views/auth/login.php",
+		"/D/xampp/htdocs/asset/application/models/model_master_barang.php",
+		"/D/xampp/htdocs/asset/index.php",
+		"/D/xampp/htdocs/asset/assets/css/login.css",
+		"/D/xampp/htdocs/asset/menu_utama.php",
+		"/D/xampp/htdocs/asset/input_ruangan.php",
+		"/D/xampp/htdocs/asset/tambah_asset.php",
+		"/D/xampp/htdocs/asset/.htaccess",
+		"/D/xampp/htdocs/travel/application/config/config.php",
+		"/D/xampp/htdocs/asset/application/config/database.php",
+		"/D/xampp/htdocs/asset/assets/js/bootstrap-select.js",
+		"/D/xampp/htdocs/asset/assets/css/bootstrap-select.css",
+		"/D/xampp/htdocs/select/test.html",
+		"/D/xampp/htdocs/asset/assets/js/selectpicker.js",
+		"/D/xampp/htdocs/asset/input_kantor.php",
+		"/D/xampp/htdocs/asset/assets/css/bootstrap.css",
+		"/C/Users/Januar Fonti/Downloads/Compressed/Balsamiq Mockups by 2lets.com/Balsamiq Mockups by 2lets.com/Read Me to Register.txt",
+		"/C/Users/Januar Fonti/Downloads/Compressed/Balsamiq Mockups by 2lets.com/Balsamiq Mockups by 2lets.com/Key and Username.txt",
+		"/D/xampp/htdocs/travel/application/views/auth/login.php",
+		"/D/xampp/htdocs/travel/dist/css/style.css",
+		"/D/xampp/htdocs/asset/assets/css/bootstrap.min.css",
+		"/D/xampp/htdocs/simple_login/application/models/model_user.php",
+		"/D/xampp/htdocs/simple_login/application/config/routes.php",
+		"/D/xampp/htdocs/simple_login/application/controllers/auth.php",
+		"/D/xampp/htdocs/simple_login/application/controllers/member.php",
+		"/D/xampp/htdocs/simple_login/application/controllers/admin.php",
+		"/D/xampp/htdocs/simple_login/application/views/member.php",
+		"/D/xampp/htdocs/simple_login/application/views/admin.php",
+		"/D/xampp/htdocs/simple_login/application/views/dashboard.php",
+		"/D/xampp/htdocs/simple_login/application/config/database.php",
+		"/D/xampp/htdocs/simple_login/application/views/login.php",
+		"/D/xampp/htdocs/simple_crud/application/config/config.php",
+		"/D/xampp/htdocs/simple_crud/application/config/database.php",
+		"/D/xampp/htdocs/simple_crud/application/config/routes.php",
+		"/D/xampp/htdocs/simple_crud/application/controllers/home.php",
+		"/D/xampp/htdocs/simple_crud/application/views/insert.php",
+		"/C/Users/Januar Fonti/Downloads/Compressed/New folder/New Text Document.txt",
+		"/C/Users/Januar Fonti/Documents/log.txt",
+		"/D/hello/platforms/android/assets/_where-is-www.txt",
+		"/D/hello/platforms/android/assets/www/index.html",
+		"/D/xampp/htdocs/services/getreports.php",
+		"/D/hello/config.xml",
+		"/D/xampp1111111/htdocs/elearning2/view_kelas.php",
+		"/D/xampp1111111/htdocs/service/koneksi.php",
+		"/D/xampp1111111/htdocs/service/servicelogin.php",
+		"/D/xampp1111111/htdocs/service/service_lihat_profil.php",
+		"/C/Users/Januar Fonti/AppData/Local/Temp/Rar$DIa0.850/index.php",
+		"/C/Users/Januar Fonti/AppData/Local/Temp/Rar$DIa0.811/config.php",
+		"/C/Users/Januar Fonti/AppData/Local/Temp/Rar$DIa0.283/getemployees.php",
+		"/D/hello/www/index.html",
+		"/D/xampp/htdocs/services/config.php",
+		"/D/hello/platforms/android/assets/www/js/employeelist.js",
+		"/D/xampp/htdocs/www/js/employeelist.js",
+		"/D/xampp/htdocs/www/index.html",
+		"/D/hello/platforms/android/assets/www/js/employeedetails.js",
+		"/D/xampp/htdocs/services/getemployees.php",
+		"/D/xampp/htdocs/services/getemployee.php",
+		"/D/xampp/htdocs/services_sepeda/application/controllers/rest_server.php",
+		"/D/hello/platforms/android/res/xml/config.xml",
+		"/C/Users/Januar Fonti/AppData/Local/Temp/Rar$DIa0.352/employeelist.js",
+		"/D/hello/platforms/android/assets/www/employeedetails.html",
+		"/D/hello/platforms/android/assets/www/js/reportlist.js",
+		"/D/hello/platforms/android/assets/www/js/index.js"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"\">\n",
+			"'); ",
+			"sandbox",
+			"The Password field does not match the Password Confirmation field",
+			"The Password field does not match the Password Confirmation field.",
+			"set_flashdata",
+			"flasdata",
+			"edit_user_fname_label",
+			"english",
+			"edit_user_fname_label",
+			"delete",
+			"offset",
+			"form-control-static",
+			"login",
+			"usern",
+			"email",
+			"428bca",
+			"background",
+			"#",
+			"selectpicker",
+			"input",
+			"selectpicker",
+			"footer",
+			"100%",
+			"table",
+			"warning",
+			"66afe9",
+			"a :",
+			"a",
+			"f5f5f5",
+			"navbar-default",
+			"navbar-brand",
+			"small",
+			";\n",
+			"update",
+			"logout",
+			"nilai",
+			"matkul",
+			"enroll",
+			"nilai_get",
+			"nilai",
+			"matkul_dosen",
+			"is_admin",
+			"regis",
+			"register",
+			"auth_",
+			"curl",
+			"80",
+			"port",
+			"enroll",
+			"login",
+			"capt",
+			"recaptcha",
+			"captcha",
+			"matkul",
+			"();",
+			"get",
+			"login",
+			"userdata",
+			";\n",
+			"<?",
+			"?>",
+			"<?",
+			"enroll",
+			"login",
+			"redirect",
+			"btn",
+			"Disallowed Key Characters",
+			"method",
+			"unknow",
+			"return $this->input->post($key, $xss_clean);",
+			"user",
+			"tambah_matkul_post",
+			"app_login_model",
+			">\n",
+			"panel-info",
+			"ddd",
+			"eee",
+			"2a6496",
+			"ul",
+			"sidebar-collapse",
+			"eeeeee",
+			"navbar",
+			"<?",
+			"id",
+			"detail",
+			"list_matkul",
+			"matkul",
+			"login",
+			"user",
+			"login",
+			"$page",
+			"tes",
+			"matkul",
+			"c",
+			"e7e7e7",
+			"e7e7",
+			"e7e7e7",
+			"428bca",
+			"eee",
+			"777777",
+			"border-bottom",
+			"navbar-header",
+			"border-bottom",
+			"navbar-header",
+			"fixed-top",
+			"fixed",
+			"navbar",
+			"hover",
+			"f8f8",
+			"f8f8f8",
+			"500px",
+			"get",
+			";extension=php_curl.dll"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 30.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "bootstrap-select.min.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 207.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
