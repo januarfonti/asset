@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50508
 File Encoding         : 65001
 
-Date: 2014-07-29 14:50:41
+Date: 2014-07-30 17:03:16
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -71,12 +71,17 @@ CREATE TABLE `tbl_asset` (
   `pemusnahan` varchar(255) DEFAULT NULL,
   `tanggal_keluar` date DEFAULT NULL,
   `status_pemusnahan` varchar(10) DEFAULT NULL,
+  `user_tambahasset` varchar(50) DEFAULT NULL,
+  `user_mutasiasset` varchar(50) DEFAULT NULL,
+  `user_pemusnahan` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of tbl_asset
 -- ----------------------------
+INSERT INTO `tbl_asset` VALUES ('1', 'AS01', 'LCD Monitor Acer', '1', '2014-07-30', '2014-07-31', '1', '1', 'Datel', 'Rusak', '1.jpg', 'Wonge bosen', '2014-07-23', 'mutasi', null, null, 'ada', 'Januari Fonti', 'Januari Fonti', null);
+INSERT INTO `tbl_asset` VALUES ('2', 'AS02', 'Printer', '1', '2014-07-30', '2014-07-29', '2', '3', 'Datel', 'Baru', '20140418_144332_1969_januarfonti.png', null, null, null, null, null, 'ada', 'Januari Fonti', null, null);
 
 -- ----------------------------
 -- Table structure for tbl_jabatan
@@ -105,11 +110,13 @@ CREATE TABLE `tbl_kantor` (
   `alamat_kantor` varchar(255) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of tbl_kantor
 -- ----------------------------
+INSERT INTO `tbl_kantor` VALUES ('1', 'TK01', 'Kantor Wilayah Malang', 'Jl. Bunga Srirejeki No 1 Malang', 'dapelmalang@yahoo.com');
+INSERT INTO `tbl_kantor` VALUES ('2', 'TK02', 'Kantor Wilayah Alaska', 'Alaska Number 1', 'alaska@yahoo.com');
 
 -- ----------------------------
 -- Table structure for tbl_kategori
@@ -120,11 +127,12 @@ CREATE TABLE `tbl_kategori` (
   `kode_kategori` varchar(50) DEFAULT NULL,
   `nama_kategori` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of tbl_kategori
 -- ----------------------------
+INSERT INTO `tbl_kategori` VALUES ('1', 'KT01', 'Elektronika');
 
 -- ----------------------------
 -- Table structure for tbl_ruangan
@@ -134,12 +142,19 @@ CREATE TABLE `tbl_ruangan` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `kode_ruangan` varchar(50) DEFAULT NULL,
   `nama_ruangan` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+  `id_kantor` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk.id_kantor` (`id_kantor`),
+  CONSTRAINT `fk.id_kantor` FOREIGN KEY (`id_kantor`) REFERENCES `tbl_kantor` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of tbl_ruangan
 -- ----------------------------
+INSERT INTO `tbl_ruangan` VALUES ('1', 'RG01', 'Ruang Sekretariat', '1');
+INSERT INTO `tbl_ruangan` VALUES ('2', 'RG02', 'Ruang Bos', '1');
+INSERT INTO `tbl_ruangan` VALUES ('3', 'RG03', 'Ruang Pembantu', '2');
+INSERT INTO `tbl_ruangan` VALUES ('4', 'RG04', 'Ruang Office Boy', '2');
 
 -- ----------------------------
 -- Table structure for users
@@ -172,7 +187,7 @@ CREATE TABLE `users` (
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES ('8', '127.0.0.1', 'januarfonti', 'HsnvalaIYHtz4Lpl4AIkC.ac5937b464ccd58f71', null, 'januarfonti@yahoo.co.id', null, null, null, 'zGiuk5/HasRn75jH3r4pMO', '1405924359', '1406620102', '1', '103140914111033', 'Januari', 'Fonti', 'Pria', '1', 'Jl. Bunga Srirejeki No 1 Malang', '083834714482');
+INSERT INTO `users` VALUES ('8', '127.0.0.1', 'januarfonti', 'HsnvalaIYHtz4Lpl4AIkC.ac5937b464ccd58f71', null, 'januarfonti@yahoo.co.id', null, null, null, 'zJ3evKnJcjZQ2s8Oq2vyYu', '1405924359', '1406702960', '1', '103140914111033', 'Januari', 'Fonti', 'Pria', '1', 'Jl. Bunga Srirejeki No 1 Malang', '083834714482');
 INSERT INTO `users` VALUES ('9', '192.168.1.2', 'rahmananam', 'JgmIXYVf4kKDSbQwTvqpqua85f155608989c3555', null, 'rahmananam@yahoo.com', null, null, null, 'JC4kDO9mEGpl30mSIHbJkO', '1406024800', '1406540172', '1', '12345', 'Rahman', 'Anam', 'Pria', '1', 'Blitar', '083834714482');
 
 -- ----------------------------
