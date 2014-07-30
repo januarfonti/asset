@@ -53,7 +53,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="<?php echo base_url(); ?>"><i class="fa fa-home"></i> Asset Informations System</a>
+            <a class="navbar-brand" href="<?php echo base_url('dashboard'); ?>"><i class="fa fa-home"></i> Asset Informations System</a>
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
