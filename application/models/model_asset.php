@@ -7,6 +7,38 @@ class model_asset extends CI_Model
 		$this->db->insert('tbl_asset',$data);
 	}
 
+	function getKantorList(){
+		$result = array();
+		$this->db->select('*');
+		$this->db->from('tbl_kantor');
+		$this->db->order_by('nama_kantor','ASC');
+		$array_keys_values = $this->db->get();
+        foreach ($array_keys_values->result() as $row)
+        {
+            $result[0]= '- Pilih Kantor -';
+            $result[$row->id]= $row->nama_kantor;
+        }
+        
+        return $result;
+	}
+
+	function getRuanganList(){
+		$id_kantor = $this->input->post('id_kantor');
+		$result = array();
+		$this->db->select('*');
+		$this->db->from('tbl_ruangan');
+		$this->db->where('id_kantor',$id_kantor);
+		$this->db->order_by('nama_ruangan','ASC');
+		$array_keys_values = $this->db->get();
+        foreach ($array_keys_values->result() as $row)
+        {
+            $result[0]= '-Pilih Ruangan-';
+            $result[$row->id]= $row->nama_ruangan;
+        }
+        
+        return $result;
+	}
+
 	 public function ambil_asset($num,$offset){
 	 	$this->db->order_by('nama_asset', 'ASC');
     	$this->db->select('tbl_asset.id,tbl_asset.kode_asset,tbl_asset.nama_asset,tbl_kategori.nama_kategori,tbl_asset.tanggal_masuk,tbl_asset.tanggal_usia,tbl_kantor.nama_kantor,tbl_ruangan.nama_ruangan,tbl_asset.status_milik,tbl_asset.kondisi,tbl_asset.gambar');

@@ -23,7 +23,18 @@
                                     </div>
                                 </div>
 
-                                
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="formGroupInputLarge">Nama Kantor</label>
+                                    <div class="col-sm-10">
+                                         <select name="id_kantor" id="bs3Select" class="input-lg selectpicker form-control" data-live-search="true">
+                                            <?php foreach ($data_kantor->result() as $row) { ?>
+                                                <option value="<?php echo $row->id; ?>"><?php echo $row->nama_kantor; ?></option> 
+                                            <?php } ?>
+                                            
+                                            
+                                        </select>
+                                    </div>
+                                </div>
 
                                 <div class="form-group form-group-lg">
                                     <label class="col-sm-2 control-label" for="formGroupInputLarge">Nama Ruangan</label>
@@ -52,9 +63,11 @@
                     <tr class="header-tabel-telkom">
                         <th class="text-center">#</th>
                         <th class="text-center">Kode</th>
+                        <th class="text-center">Nama Kantor</th>
                         <th class="text-center">Nama Ruangan</th>
+
                         
-                        <th class="text-center">Detail</th>
+                            
                         <th class="text-center">Ubah</th>
                         <th class="text-center">Hapus</th>
                     </tr>
@@ -68,10 +81,10 @@
                         <td>Data Kosong</td>
                         <td></td>
                         <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                         
-                        <td></td>
-                        <td></td>
-                        <td></td>
                         
                     </tr>    
                     <?php }
@@ -81,10 +94,10 @@
                     <tr class="isi-tabel-telkom">
                         <td><?php echo $no; ?></td>
                         <td><?php echo $row->kode_ruangan; ?></td>
-                        
+                        <td><?php echo $row->nama_kantor; ?></td>
                         <td><?php echo $row->nama_ruangan; ?></td>
                         
-                        <td class="text-center"><a href="<?php echo base_url('master_data/detail_ruangan'); ?>/<?php echo $row->id_ruangan; ?>" class="btn btn-telkom"><i class="fa fa-list"></i></a></td>
+                        
                         <td class="text-center"><a href="<?php echo base_url('master_data/ubah_ruangan'); ?>/<?php echo $row->id_ruangan; ?>" class="btn btn-telkom"><i class="fa fa-edit"></i></a></td>
                         <td class="text-center"><a href="<?php echo base_url('master_data/hapus_ruangan'); ?>/<?php echo $row->id_ruangan; ?>" class="btn btn-telkom-warning" onClick="return doconfirm();"><i class="fa fa-times"></i></a></td>
 

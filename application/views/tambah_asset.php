@@ -68,22 +68,22 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label" for="formGroupInputLarge">Kantor</label>
                                     <div class="col-sm-10">
-                                         <select name="id_kantor" id="bs3Select" class="input-lg selectpicker form-control" data-live-search="true">
-                                         <?php foreach ($data_kantor->result() as $row) { ?>
-                                            <option value="<?php echo $row->id; ?>"><?php echo $row->nama_kantor; ?></option> 
-                                         <?php } ?>
-                                        </select>
+                                        <div id="kantor">
+                                            <?php
+                                                echo form_dropdown("id_kantor",$option_kantor,"","id='id_kantor' class='input-lg selectpicker form-control' data-live-search='true' ");
+                                            ?>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label" for="formGroupInputLarge">Ruangan</label>
                                     <div class="col-sm-10">
-                                         <select name="id_ruangan" id="bs3Select" class="input-lg selectpicker form-control" data-live-search="true">
-                                         <?php foreach ($data_ruangan->result() as $row) { ?>
-                                            <option value="<?php echo $row->id; ?>"><?php echo $row->nama_ruangan; ?></option> 
-                                         <?php } ?>
-                                        </select>
+                                        <div id="ruangan">
+                                            <?php
+                                                echo form_dropdown("id_ruangan",array('Pilih Ruangan'=>'Pilih Kantor Dahulu'),"","class='input-lg selectpicker form-control' data-live-search='true' disabled");
+                                            ?>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -201,3 +201,24 @@
         }
         }
     </script>
+
+    <script type="text/javascript">
+        $("#id_kantor").change(function(){
+                var selectValues = $("#id_kantor").val();
+                if (selectValues == 0){
+                    var msg = "<select name=\"id_ruangan\" class=\"input-lg selectpicker form-control\" data-live-search=\"true\" disabled><option value=\"Pilih Ruangan\">Pilih Kantor Dahulu</option></select>";
+                    $('#ruangan').html(msg);
+                }else{
+                    var id_kantor = {id_kantor:$("#id_kantor").val()};
+                    $('#id_ruangan').attr("disabled",true);
+                    $.ajax({
+                            type: "POST",
+                            url : "<?php echo site_url('kelola_asset/select_ruangan')?>",
+                            data: id_kantor,
+                            success: function(msg){
+                                $('#ruangan').html(msg);
+                            }
+                    });
+                }
+        });
+       </script>

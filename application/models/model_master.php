@@ -39,9 +39,9 @@ class model_master extends CI_Model
     /** MODEL RUANGAN **/
 
     public function ambil_ruangan($num,$offset){
-    	$this->db->select('tbl_ruangan.id as id_ruangan, tbl_ruangan.kode_ruangan,tbl_ruangan.nama_ruangan');
+    	$this->db->select('tbl_ruangan.id as id_ruangan, tbl_ruangan.kode_ruangan,tbl_ruangan.nama_ruangan,tbl_kantor.nama_kantor,tbl_kantor.id as id_kantor');
 		$this->db->from('tbl_ruangan');
-		
+		$this->db->join('tbl_kantor', 'tbl_kantor.id = tbl_ruangan.id_kantor','inner');
 		$this->db->limit($num, $offset);
 		$query = $this->db->get();
     	return $query;
@@ -58,9 +58,9 @@ class model_master extends CI_Model
 
     public function detail_ruangan($id){
         //return $this->db->get_where('tbl_ruangan', array('id' => $id));
-        $this->db->select('tbl_ruangan.id as id_ruangan,tbl_ruangan.kode_ruangan,tbl_ruangan.nama_ruangan');
+        $this->db->select('tbl_ruangan.id as id_ruangan,tbl_ruangan.kode_ruangan,tbl_ruangan.nama_ruangan,tbl_kantor.nama_kantor,tbl_kantor.id as id_kantor');
 		$this->db->from('tbl_ruangan');
-		
+		$this->db->join('tbl_kantor', 'tbl_kantor.id = tbl_ruangan.id_kantor','inner');
 		$this->db->where('tbl_ruangan.id',$id);
 		$query = $this->db->get();
 		return $query;

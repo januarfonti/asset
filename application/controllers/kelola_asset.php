@@ -58,8 +58,17 @@ class kelola_asset extends CI_Controller {
 			//buat pagination
 			$data['halaman']            = $this->pagination->create_links();
 			$data['data_asset']         =$this->model_asset->ambil_asset($config['per_page'], $id);
+			$data['option_kantor'] 		= $this->model_asset->getKantorList();
 			$data['content']            =$this->load->view('tambah_asset',$data,TRUE);	
 			$this->load->view('content_wrapper',$data);
+	}
+
+	function select_ruangan(){
+            if('IS_AJAX') {
+        	$data['option_ruangan'] = $this->model_asset->getRuanganList();		
+		$this->load->view('ruangan',$data);
+            }
+		
 	}
 
 	public function detail_asset($id){
@@ -86,6 +95,7 @@ class kelola_asset extends CI_Controller {
 			$data['user']          =$this->ion_auth->user()->row();
 			$data['data_kategori'] = $this->model_master->ambil_data_kategori();
 			$data['data_kantor']   = $this->model_master->ambil_data_kantor();
+			$data['option_kantor'] 		= $this->model_asset->getKantorList();
 			$data['data_ruangan']  = $this->model_master->ambil_data_ruangan();
 			$data['data_asset']    =$this->model_asset->detail_asset($id)->row();
 			$data['content']       =$this->load->view('ubah_asset',$data,TRUE);
@@ -129,6 +139,7 @@ class kelola_asset extends CI_Controller {
 			$data['halaman']            = $this->pagination->create_links();
 			$data['data_asset']         =$this->model_asset->ambil_mutasi($config['per_page'], $id);
 			$data['data_ambil_asset']   =$this->model_asset->ambil_data_asset();
+			$data['option_kantor'] 		= $this->model_asset->getKantorList();
 			$data['content']            =$this->load->view('mutasi',$data,TRUE);	
 			$this->load->view('content_wrapper',$data);
 	}

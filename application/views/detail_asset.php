@@ -55,7 +55,7 @@
                                 <div class="form-group form-group-lg">
                                     <label class="col-sm-2 control-label" for="formGroupInputLarge">Kantor</label>
                                     <div class="col-sm-10">
-                                         <input class="form-control" name="nama_asset" type="text" id="formGroupInputLarge" value="<?php echo $data_asset->nama_asset; ?>" disabled>
+                                         <input class="form-control" name="nama_asset" type="text" id="formGroupInputLarge" value="<?php echo $data_asset->nama_kantor; ?>" disabled>
                                     </div>
                                 </div>
 

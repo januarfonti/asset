@@ -2510,7 +2510,7 @@ select[multiple].input-sm {
   border-radius: 6px;
 }
 select.input-lg {
-  height: 46px;
+  height: 96px;
   line-height: 46px;
 }
 textarea.input-lg,

@@ -243,7 +243,7 @@ class master_data extends CI_Controller {
 
 	public function proses_tambah_ruangan(){
 		$data = array('kode_ruangan' => $this->input->post('kode_ruangan'),
-						
+						'id_kantor' => $this->input->post('id_kantor'),
 						'nama_ruangan' => $this->input->post('nama_ruangan'));
 						
 		$kode_ruangan = $this->input->post('kode_ruangan');
@@ -267,7 +267,7 @@ class master_data extends CI_Controller {
 	public function proses_ubah_ruangan(){
 		$id['id'] = $this->input->post('id_ruangan');
 		$data = array('kode_ruangan' => $this->input->post('kode_ruangan'),
-						
+						'id_kantor' => $this->input->post('id_kantor'),
 						'nama_ruangan' => $this->input->post('nama_ruangan'));
 
 		$this->model_master->ubah_ruangan($data,$id);	
