@@ -55,7 +55,7 @@
                       <th class="text-center">Tanggal Usia</th>
                       <th class="text-center">Status Milik</th>
                       <th class="text-center">Kondisi</th>
-                      <th class="text-center">Dimutasi Oleh</th>
+                      <th class="text-center">Ditambahkan Oleh</th>
                   </tr>
               </thead>
               <tbody>
@@ -87,7 +87,7 @@
                           <td><?php echo $row->tanggal_usia; ?></td>
                           <td><?php echo $row->status_milik; ?></td>
                           <td><?php echo $row->kondisi; ?></td>
-                          <td><?php echo $row->user_mutasiasset; ?></td>
+                          <td><?php echo $row->user_tambahasset; ?></td>
                       </tr>
                   <?php $no++; } } ?>
               </tbody>
