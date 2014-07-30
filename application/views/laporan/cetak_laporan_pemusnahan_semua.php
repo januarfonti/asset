@@ -33,7 +33,7 @@
           Laporan Pemusnahan Asset
       </div>
       <div class="row">
-          Periode Tanggal : <strong><?php echo $tanggal1; ?></strong> sampai <strong><?php echo $tanggal2; ?></strong><br>
+
           Total Asset <strong><?php echo $laporan->num_rows(); ?></strong>
       </div>
   </div>

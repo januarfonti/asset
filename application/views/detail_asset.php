@@ -80,6 +80,20 @@
                                     </div>
                                 </div>
 
+                                <div class="form-group form-group-lg">
+                                    <label class="col-sm-2 control-label" for="formGroupInputLarge">Ditambahkan Oleh</label>
+                                    <div class="col-sm-10">
+                                         <input class="form-control" name="nama_asset" type="text" id="formGroupInputLarge" value="<?php echo $data_asset->user_tambahasset; ?>" disabled>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-lg">
+                                    <label class="col-sm-2 control-label" for="formGroupInputLarge">Dimutasi Oleh</label>
+                                    <div class="col-sm-10">
+                                         <input class="form-control" name="nama_asset" type="text" id="formGroupInputLarge" value="<?php echo $data_asset->user_mutasiasset; ?>" disabled>
+                                    </div>
+                                </div>
+
                                  
 
                                  <div class="form-group form-group-lg">

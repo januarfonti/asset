@@ -7,10 +7,22 @@
                     <li class="active">Laporan Mutasi Asset</li>
                 </ol>
 
+                    <div class="panel panel-telkom">
+                    <div class="panel-heading">
+                        <i class="fa fa-archive"></i> Laporan Data Semua Mutasi Asset
+                    </div>
+                    <div class="panel-body">
+                        <?php echo $this->session->flashdata('pesan'); ?>
+                        <a href="<?php echo base_url('kelola_asset/cetak_laporan_mutasi_semua'); ?>" class="btn btn-telkom" style="width:100%;"><i class="fa fa-print"></i>  Cetak Data Semua Laporan Asset</a>
+                        </div><!--panel body-->
+                </div><!--panel telkom-->
+
                 <div class="panel panel-telkom">
                     <div class="panel-heading">
                         <i class="fa fa-archive"></i> Laporan Mutasi Asset
                     </div>
+                    
+
  
                          <div class="panel-body">
                         <?php echo $this->session->flashdata('pesan'); ?>

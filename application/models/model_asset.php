@@ -80,7 +80,7 @@ class model_asset extends CI_Model
 
     public function detail_asset($id){
 	 	
-    	$this->db->select('tbl_asset.id,tbl_asset.kode_asset,tbl_asset.nama_asset,tbl_kategori.nama_kategori,tbl_asset.tanggal_masuk,tbl_asset.tanggal_usia,tbl_kantor.nama_kantor,tbl_ruangan.nama_ruangan,tbl_asset.status_milik,tbl_asset.kondisi,tbl_asset.gambar,tbl_asset.id_kategori as id_kategori,tbl_kategori.nama_kategori,tbl_asset.id_kantor,tbl_kantor.nama_kantor,tbl_asset.id_ruangan,tbl_ruangan.nama_ruangan');
+    	$this->db->select('tbl_asset.id,tbl_asset.kode_asset,tbl_asset.nama_asset,tbl_kategori.nama_kategori,tbl_asset.tanggal_masuk,tbl_asset.tanggal_usia,tbl_kantor.nama_kantor,tbl_ruangan.nama_ruangan,tbl_asset.status_milik,tbl_asset.kondisi,tbl_asset.gambar,tbl_asset.id_kategori as id_kategori,tbl_kategori.nama_kategori,tbl_asset.id_kantor,tbl_kantor.nama_kantor,tbl_asset.id_ruangan,tbl_ruangan.nama_ruangan,tbl_asset.user_tambahasset,tbl_asset.user_mutasiasset');
 		$this->db->from('tbl_asset');
 		$this->db->join('tbl_kantor', 'tbl_kantor.id = tbl_asset.id_kantor','inner');
 		$this->db->join('tbl_ruangan','tbl_ruangan.id = tbl_asset.id_ruangan','inner');
@@ -114,13 +114,37 @@ class model_asset extends CI_Model
 								tbl_ruangan.nama_ruangan,
 								tbl_asset.status_milik,
 								tbl_asset.kondisi,
-								tbl_asset.gambar
+								tbl_asset.gambar,
+								tbl_asset.user_tambahasset
 								FROM
 								tbl_asset
 								INNER JOIN tbl_kantor ON tbl_kantor.id = tbl_asset.id_kantor
 								INNER JOIN tbl_ruangan ON tbl_ruangan.id = tbl_asset.id_ruangan
 								INNER JOIN tbl_kategori ON tbl_kategori.id = tbl_asset.id_kategori  WHERE tanggal_masuk BETWEEN '$tanggal_awal' AND '$tanggal_akhir'
 								AND status_pemusnahan != 'musnah'
+								");
+    	return $query;
+    }
+
+       public function laporan_asset_semua(){
+    	$query = $this->db->query("SELECT tbl_asset.id,
+								tbl_asset.kode_asset,
+								tbl_asset.nama_asset,
+								tbl_kategori.nama_kategori,
+								tbl_asset.tanggal_masuk,
+								tbl_asset.tanggal_usia,
+								tbl_kantor.nama_kantor,
+								tbl_ruangan.nama_ruangan,
+								tbl_asset.status_milik,
+								tbl_asset.kondisi,
+								tbl_asset.gambar,
+								tbl_asset.user_tambahasset
+								FROM
+								tbl_asset
+								INNER JOIN tbl_kantor ON tbl_kantor.id = tbl_asset.id_kantor
+								INNER JOIN tbl_ruangan ON tbl_ruangan.id = tbl_asset.id_ruangan
+								INNER JOIN tbl_kategori ON tbl_kategori.id = tbl_asset.id_kategori  
+								WHERE status_pemusnahan != 'musnah'
 								");
     	return $query;
     }
@@ -138,13 +162,39 @@ class model_asset extends CI_Model
 								tbl_ruangan.nama_ruangan,
 								tbl_asset.status_milik,
 								tbl_asset.kondisi,
-								tbl_asset.gambar
+								tbl_asset.gambar,
+								tbl_asset.user_mutasiasset
 								FROM
 								tbl_asset
 								INNER JOIN tbl_kantor ON tbl_kantor.id = tbl_asset.id_kantor
 								INNER JOIN tbl_ruangan ON tbl_ruangan.id = tbl_asset.id_ruangan
 								INNER JOIN tbl_kategori ON tbl_kategori.id = tbl_asset.id_kategori  WHERE tanggal_mutasi BETWEEN '$tanggal_awal' AND '$tanggal_akhir'
 								AND status_pemusnahan != 'musnah' AND status_mutasi = 'mutasi'
+								");
+    	return $query;
+    }
+
+    public function laporan_mutasi_semua(){
+    	$query = $this->db->query("SELECT tbl_asset.id,
+								tbl_asset.kode_asset,
+								tbl_asset.nama_asset,
+								tbl_asset.tanggal_mutasi,
+								tbl_asset.jenis_mutasi,
+								tbl_kategori.nama_kategori,
+								tbl_asset.tanggal_masuk,
+								tbl_asset.tanggal_usia,
+								tbl_kantor.nama_kantor,
+								tbl_ruangan.nama_ruangan,
+								tbl_asset.status_milik,
+								tbl_asset.kondisi,
+								tbl_asset.gambar,
+								tbl_asset.user_mutasiasset
+								FROM
+								tbl_asset
+								INNER JOIN tbl_kantor ON tbl_kantor.id = tbl_asset.id_kantor
+								INNER JOIN tbl_ruangan ON tbl_ruangan.id = tbl_asset.id_ruangan
+								INNER JOIN tbl_kategori ON tbl_kategori.id = tbl_asset.id_kategori  WHERE
+								status_pemusnahan != 'musnah' AND status_mutasi = 'mutasi'
 								");
     	return $query;
     }
@@ -164,13 +214,41 @@ class model_asset extends CI_Model
 								tbl_asset.kondisi,
 								tbl_asset.pemusnahan,
 								tbl_asset.tanggal_keluar,
-								tbl_asset.gambar
+								tbl_asset.gambar,
+								tbl_asset.user_pemusnahan
 								FROM
 								tbl_asset
 								INNER JOIN tbl_kantor ON tbl_kantor.id = tbl_asset.id_kantor
 								INNER JOIN tbl_ruangan ON tbl_ruangan.id = tbl_asset.id_ruangan
 								INNER JOIN tbl_kategori ON tbl_kategori.id = tbl_asset.id_kategori  WHERE tanggal_keluar BETWEEN '$tanggal_awal' AND '$tanggal_akhir'
 								AND status_pemusnahan = 'musnah'
+								");
+    	return $query;
+    }
+
+     public function laporan_pemusnahan_semua(){
+    	$query = $this->db->query("SELECT tbl_asset.id,
+								tbl_asset.kode_asset,
+								tbl_asset.nama_asset,
+								tbl_asset.tanggal_mutasi,
+								tbl_asset.jenis_mutasi,
+								tbl_kategori.nama_kategori,
+								tbl_asset.tanggal_masuk,
+								tbl_asset.tanggal_usia,
+								tbl_kantor.nama_kantor,
+								tbl_ruangan.nama_ruangan,
+								tbl_asset.status_milik,
+								tbl_asset.kondisi,
+								tbl_asset.pemusnahan,
+								tbl_asset.tanggal_keluar,
+								tbl_asset.gambar,
+								tbl_asset.user_pemusnahan
+								FROM
+								tbl_asset
+								INNER JOIN tbl_kantor ON tbl_kantor.id = tbl_asset.id_kantor
+								INNER JOIN tbl_ruangan ON tbl_ruangan.id = tbl_asset.id_ruangan
+								INNER JOIN tbl_kategori ON tbl_kategori.id = tbl_asset.id_kategori  WHERE 
+								status_pemusnahan = 'musnah'
 								");
     	return $query;
     }

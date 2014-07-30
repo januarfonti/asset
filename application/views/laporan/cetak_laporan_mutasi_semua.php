@@ -30,10 +30,10 @@
   <div class="container">
   <div class="col-md-12 text-center">
       <div class="row"  style="font-size:25px;">
-          Laporan Pemusnahan Asset
+          Laporan Mutasi Asset
       </div>
       <div class="row">
-          Periode Tanggal : <strong><?php echo $tanggal1; ?></strong> sampai <strong><?php echo $tanggal2; ?></strong><br>
+
           Total Asset <strong><?php echo $laporan->num_rows(); ?></strong>
       </div>
   </div>
@@ -51,10 +51,10 @@
                       <th class="text-center">Kategori</th>
                       <th class="text-center">Kantor</th>
                       <th class="text-center">Ruangan</th>
-                      <th class="text-center">Tanggal Keluar</th>
-                      <th class="text-center">Keterangan</th>
-                      <th class="text-center">Dimusnahkan Oleh</th>
-                      
+                      <th class="text-center">Tanggal Mutasi</th>
+                      <th class="text-center">Jenis Mutasi</th>
+                      <th class="text-center">Kondisi</th>
+                      <th class="text-center">Dimutasi Oleh</th>
                   </tr>
               </thead>
               <tbody>
@@ -70,7 +70,7 @@
                           <td></td>
                           <td></td>
                           <td></td>
-                      
+                          <td></td>
                       </tr>    
                   <?php } elseif ($laporan->num_rows()<>0){ 
                       foreach ($laporan->result() as $row) { ?>
@@ -81,10 +81,10 @@
                           <td><?php echo $row->nama_kategori; ?></td>
                           <td><?php echo $row->nama_kantor; ?></td>
                           <td><?php echo $row->nama_ruangan; ?></td>
-                          <td><?php echo $row->tanggal_keluar; ?></td>
-                          <td><?php echo $row->pemusnahan; ?></td>
-                          <td><?php echo $row->user_pemusnahan; ?></td>
-                      
+                          <td><?php echo $row->tanggal_mutasi; ?></td>
+                          <td><?php echo $row->jenis_mutasi; ?></td>
+                          <td><?php echo $row->kondisi; ?></td>
+                          <td><?php echo $row->user_mutasiasset; ?></td>
                       </tr>
                   <?php $no++; } } ?>
               </tbody>

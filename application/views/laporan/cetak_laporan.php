@@ -55,6 +55,7 @@
                       <th class="text-center">Tanggal Usia</th>
                       <th class="text-center">Status Milik</th>
                       <th class="text-center">Kondisi</th>
+                      <th class="text-center">Dimutasi Oleh</th>
                   </tr>
               </thead>
               <tbody>
@@ -62,6 +63,8 @@
                   <?php if ($laporan->num_rows()==0){ ?>
                       <tr>
                           <td>Data Kosong</td>
+                          <td></td>
+                          <td></td>
                           <td></td>
                           <td></td>
                           <td></td>
@@ -84,6 +87,7 @@
                           <td><?php echo $row->tanggal_usia; ?></td>
                           <td><?php echo $row->status_milik; ?></td>
                           <td><?php echo $row->kondisi; ?></td>
+                          <td><?php echo $row->user_mutasiasset; ?></td>
                       </tr>
                   <?php $no++; } } ?>
               </tbody>

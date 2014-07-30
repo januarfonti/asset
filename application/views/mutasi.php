@@ -40,10 +40,10 @@
                                 <div class="form-group form-group-lg">
                                     <label class="col-sm-2 control-label" for="formGroupInputLarge">Tanggal Mutasi</label>
                                     <div class="col-sm-10">
-                                            <div class="input-group date">
+                                            
                                                 <input type="text" data-provide="datepicker" data-date-format="yyyy-mm-dd" class="form-control" name="tanggal_mutasi">
-                                                <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
-                                            </div>
+                                            <span class="help-block"><small>Format tanggal <i>yyyy-mm-dd</i>. Contoh 2014-12-01</small></span>
+                                            
                                     </div>
                                 </div>
 
@@ -112,8 +112,6 @@
                         <th class="text-center">Ruangan</th>
                         <th class="text-center">Tanggal Mutasi</th>
                         <th class="text-center">Detail</th>                        
-                        <th class="text-center">Ubah</th>
-                        <th class="text-center">Hapus</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -128,8 +126,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td></td>
-                        <td></td>
+                        
                         
                         
                     </tr>    
@@ -144,8 +141,7 @@
                         <td><?php echo $row->nama_ruangan; ?></td>
                         <td><?php echo $row->tanggal_mutasi; ?></td>
                         <td class="text-center"><a href="<?php echo base_url('kelola_asset/detail_asset'); ?>/<?php echo $row->id; ?>" class="btn btn-telkom"><i class="fa fa-list"></i></a></td>
-                        <td class="text-center"><a href="<?php echo base_url('kelola_asset/ubah_asset'); ?>/<?php echo $row->id; ?>" class="btn btn-telkom"><i class="fa fa-edit"></i></a></td>
-                        <td class="text-center"><a href="<?php echo base_url('kelola_asset/hapus_asset'); ?>/<?php echo $row->id; ?>" class="btn btn-telkom-warning" onClick="return doconfirm();"><i class="fa fa-times"></i></a></td>
+                        
 
                     </tr>
                 <?php $no++ ;} } ?>

@@ -135,13 +135,15 @@ class kelola_asset extends CI_Controller {
 
 	public function proses_mutasi_asset(){
 		$id['id'] = $this->input->post('id_asset');
+		$user =$this->ion_auth->user()->row();
 		$data = array(
 						'jenis_mutasi'   => $this->input->post('jenis_mutasi'),
 						'tanggal_mutasi' => $this->input->post('tanggal_mutasi'),
 						'id_kantor'      => $this->input->post('id_kantor'), 
 						'id_ruangan'     => $this->input->post('id_ruangan'),
 						'kondisi'        => $this->input->post('kondisi'),
-						'status_mutasi'  => 'mutasi'
+						'status_mutasi'  => 'mutasi',
+						'user_mutasiasset'	=> $user->first_name.' '.$user->last_name
 						);
 		$this->model_asset->tambah_mutasi($data,$id);
 		redirect('kelola_asset/mutasi','refresh');
@@ -191,11 +193,13 @@ class kelola_asset extends CI_Controller {
 
 	public function proses_pemusnahan_asset(){
 		$id['id'] = $this->input->post('id_asset');
+		$user =$this->ion_auth->user()->row();
 		$data = array(
 						'pemusnahan'        => $this->input->post('pemusnahan'),
 						'tanggal_keluar'    => $this->input->post('tanggal_keluar'),
 						'status_mutasi'     => '',
-						'status_pemusnahan' => 'musnah'
+						'status_pemusnahan' => 'musnah',
+						'user_pemusnahan'	=> $user->first_name.' '.$user->last_name
 						);
 		$this->model_asset->tambah_mutasi($data,$id);
 		redirect('kelola_asset/pemusnahan_asset','refresh');
@@ -235,6 +239,7 @@ class kelola_asset extends CI_Controller {
                     if ( !$this->image_lib->resize()){
                 	$this->session->set_flashdata('errors', $this->image_lib->display_errors('', ''));   
 					}
+					$user =$this->ion_auth->user()->row();
 					$data        = array(
 							'kode_asset'        => $this->input->post('kode_asset') ,
 							'nama_asset'        => $this->input->post('nama_asset') ,
@@ -246,13 +251,15 @@ class kelola_asset extends CI_Controller {
 							'status_milik'      => $this->input->post('status_milik') ,
 							'kondisi'           => $this->input->post('kondisi') ,
 							'status_pemusnahan' => 'ada',
-							'gambar'            => $upload_data['file_name']);
+							'gambar'            => $upload_data['file_name'],
+							'user_tambahasset'	=> $user->first_name.' '.$user->last_name
+							);
 					$this->model_asset->tambah_asset($data);
 					redirect('kelola_asset/tambah_asset');
             	}      
     }
 
-	
+
 
 	/**
 	public function proses_tambah_asset()
@@ -388,6 +395,8 @@ class kelola_asset extends CI_Controller {
 		{
 			redirect('auth', 'refresh');
 		}
+			$paper = 'a4';
+			$orientation = 'landscape';
 			$data['user']               =$this->ion_auth->user()->row();
 			$data['judul_halaman']      ='Laporan Asset';
 			//$data['content']            =$this->load->view('laporan_asset',$data,TRUE);	
@@ -399,7 +408,25 @@ class kelola_asset extends CI_Controller {
 			$data['tanggal2'] = $tanggal_akhir;
 			//$this->load->view('laporan/cetak_laporan',$data);
 			$html = $this->load->view('laporan/cetak_laporan',$data,TRUE);
-			$this->pdf->pdf_create($html,"Laporan Asset",$this->input->post('paper'),$this->input->post('orientation'));
+			$this->pdf->pdf_create($html,"Laporan Asset",$paper,$orientation);
+	}
+
+	public function cetak_laporan_semua()
+	{
+		if (!$this->ion_auth->logged_in())
+		{
+			redirect('auth', 'refresh');
+		}
+			$paper = 'a4';
+			$orientation = 'landscape';
+			$data['user']               =$this->ion_auth->user()->row();
+			$data['judul_halaman']      ='Laporan Asset';
+			//$data['content']            =$this->load->view('laporan_asset',$data,TRUE);	
+	
+			//$data['laporan'] = $this->db->query('select * from tbl_asset WHERE tanggal_masuk BETWEEN "$tanggal_awal" AND "$tanggal_akhir"')->result();
+			$data['laporan'] = $this->model_asset->laporan_asset_semua();
+			$html = $this->load->view('laporan/cetak_laporan_semua',$data,TRUE);
+			$this->pdf->pdf_create($html,"Laporan Asset",$paper,$orientation);
 	}
 
 	public function laporan_mutasi()
@@ -420,6 +447,8 @@ class kelola_asset extends CI_Controller {
 		{
 			redirect('auth', 'refresh');
 		}
+			$paper = 'a4';
+			$orientation = 'landscape';
 			$data['user']               =$this->ion_auth->user()->row();
 			$data['judul_halaman']      ='Laporan Mutasi';
 			//$data['content']            =$this->load->view('laporan_asset',$data,TRUE);	
@@ -431,7 +460,25 @@ class kelola_asset extends CI_Controller {
 			$data['tanggal2'] = $tanggal_akhir;
 			//$this->load->view('laporan/cetak_laporan',$data);
 			$html = $this->load->view('laporan/cetak_laporan_mutasi',$data,TRUE);
-			$this->pdf->pdf_create($html,"Laporan Mutasi",$this->input->post('paper'),$this->input->post('orientation'));
+			$this->pdf->pdf_create($html,"Laporan Mutasi",$paper,$orientation);
+	}
+
+	public function cetak_laporan_mutasi_semua()
+	{
+		if (!$this->ion_auth->logged_in())
+		{
+			redirect('auth', 'refresh');
+		}
+			$paper = 'a4';
+			$orientation = 'landscape';
+			$data['user']               =$this->ion_auth->user()->row();
+			$data['judul_halaman']      ='Laporan Mutasi';
+			
+			$data['laporan'] = $this->model_asset->laporan_mutasi_semua();
+			
+			//$this->load->view('laporan/cetak_laporan',$data);
+			$html = $this->load->view('laporan/cetak_laporan_mutasi_semua',$data,TRUE);
+			$this->pdf->pdf_create($html,"Laporan Mutasi",$paper,$orientation);
 	}
 
 	public function laporan_pemusnahan()
@@ -452,6 +499,8 @@ class kelola_asset extends CI_Controller {
 		{
 			redirect('auth', 'refresh');
 		}
+			$paper = 'a4';
+			$orientation = 'landscape';
 			$data['user']               =$this->ion_auth->user()->row();
 			$data['judul_halaman']      ='Laporan Pemusnahan Asset';
 			//$data['content']            =$this->load->view('laporan_asset',$data,TRUE);	
@@ -463,7 +512,22 @@ class kelola_asset extends CI_Controller {
 			$data['tanggal2'] = $tanggal_akhir;
 			//$this->load->view('laporan/cetak_laporan',$data);
 			$html = $this->load->view('laporan/cetak_laporan_pemusnahan',$data,TRUE);
-			$this->pdf->pdf_create($html,"Laporan Pemusnahan Mutasi",$this->input->post('paper'),$this->input->post('orientation'));
+			$this->pdf->pdf_create($html,"Laporan Pemusnahan Mutasi",$paper,$orientation);
+	}
+
+	public function cetak_laporan_pemusnahan_semua()
+	{
+		if (!$this->ion_auth->logged_in())
+		{
+			redirect('auth', 'refresh');
+		}
+			$paper = 'a4';
+			$orientation = 'landscape';
+			$data['user']               =$this->ion_auth->user()->row();
+			$data['judul_halaman']      ='Laporan Pemusnahan Asset';
+			$data['laporan'] = $this->model_asset->laporan_pemusnahan_semua();
+			$html = $this->load->view('laporan/cetak_laporan_pemusnahan_semua',$data,TRUE);
+			$this->pdf->pdf_create($html,"Laporan Pemusnahan Mutasi",$paper,$orientation);
 	}
 
 

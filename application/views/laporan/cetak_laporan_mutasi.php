@@ -53,8 +53,8 @@
                       <th class="text-center">Ruangan</th>
                       <th class="text-center">Tanggal Mutasi</th>
                       <th class="text-center">Jenis Mutasi</th>
-
                       <th class="text-center">Kondisi</th>
+                      <th class="text-center">Dimutasi Oleh</th>
                   </tr>
               </thead>
               <tbody>
@@ -62,6 +62,7 @@
                   <?php if ($laporan->num_rows()==0){ ?>
                       <tr>
                           <td>Data Kosong</td>
+                          <td></td>
                           <td></td>
                           <td></td>
                           <td></td>
@@ -83,6 +84,7 @@
                           <td><?php echo $row->tanggal_mutasi; ?></td>
                           <td><?php echo $row->jenis_mutasi; ?></td>
                           <td><?php echo $row->kondisi; ?></td>
+                          <td><?php echo $row->user_mutasiasset; ?></td>
                       </tr>
                   <?php $no++; } } ?>
               </tbody>
