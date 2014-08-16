@@ -82,6 +82,63 @@
                             </form>
                         </div><!--panel body-->
                     </div><!--panel telkom-->
+
+                       <div class="panel panel-telkom">
+                            <div class="panel-heading">
+                                <i class="fa fa-archive"></i> Laporan Data Asset Berdasarkan Kantor
+                            </div>
+                            <div class="panel-body">
+                                
+                                
+                                <?php echo form_open("kelola_asset/cetak_laporan_ruangan",array('role' => 'form','class' => 'form-horizontal'));?>
+                                
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="formGroupInputLarge">Kantor</label>
+                                    <div class="col-sm-10">
+                                        <div id="kantor">
+                                            <?php
+                                                echo form_dropdown("id_kantor",$option_kantor,"","id='id_kantor' class='input-lg selectpicker form-control' data-live-search='true' ");
+                                            ?>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="formGroupInputLarge">Ruangan</label>
+                                    <div class="col-sm-10">
+                                        <div id="ruangan">
+                                            <?php
+                                                echo form_dropdown("id_ruangan",array('Pilih Ruangan'=>'Pilih Kantor Dahulu'),"","class='input-lg selectpicker form-control' data-live-search='true' disabled");
+                                            ?>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="formGroupInputLarge">Jenis Laporan</label>
+                                    <div class="col-sm-10">
+                                        <div class=" input-lg">
+                                            <?php echo form_radio("jenis", "pdf", TRUE); ?> PDF
+                                            <?php echo form_radio("jenis", "excel"); ?> Excel
+                                        </div>
+                                    </div>
+                                </div>
+
+                                
+                                
+
+                                <div class="form-group form-group-lg">
+                                    <label class="col-sm-2 control-label" for="formGroupInputLarge"></label>
+                                    <div class="col-sm-10">
+                                        <button class="btn btn-telkom"><i class="fa fa-thumbs-up"></i> Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div><!--panel body-->
+                    </div><!--panel telkom-->
+
+
                   </div><!-- AKHIR TAB PDF -->
                   <div class="tab-pane" id="excel">
                         <div class="panel panel-telkom">
@@ -149,6 +206,11 @@
                             </form>
                         </div><!--panel body-->
                     </div><!--panel telkom-->
+
+
+                    
+
+
                   </div><!-- AKHIR TAB EXCEL -->
                   
                 </div>
@@ -162,3 +224,24 @@
 
         
     </div><!--container-->
+
+<script type="text/javascript">
+        $("#id_kantor").change(function(){
+                var selectValues = $("#id_kantor").val();
+                if (selectValues == 0){
+                    var msg = "<select name=\"id_ruangan\" class=\"input-lg selectpicker form-control\" data-live-search=\"true\" disabled><option value=\"Pilih Ruangan\">Pilih Kantor Dahulu</option></select>";
+                    $('#ruangan').html(msg);
+                }else{
+                    var id_kantor = {id_kantor:$("#id_kantor").val()};
+                    $('#id_ruangan').attr("disabled",true);
+                    $.ajax({
+                            type: "POST",
+                            url : "<?php echo site_url('kelola_asset/select_ruangan')?>",
+                            data: id_kantor,
+                            success: function(msg){
+                                $('#ruangan').html(msg);
+                            }
+                    });
+                }
+        });
+       </script>

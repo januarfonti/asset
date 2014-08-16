@@ -394,11 +394,133 @@ class kelola_asset extends CI_Controller {
 		{
 			redirect('auth', 'refresh');
 		}
+			$data['data_kantor']        = $this->model_master->ambil_data_kantor();
+			$data['data_ruangan']       = $this->model_master->ambil_data_ruangan();
+			$data['option_kantor']      = $this->model_asset->getKantorList();
+
 			$data['user']               =$this->ion_auth->user()->row();
 			$data['judul_halaman']      ='Laporan Asset';
 			$data['content']            =$this->load->view('laporan_asset',$data,TRUE);	
 			$this->load->view('content_wrapper',$data);
 	}
+
+	public function cetak_laporan_ruangan()
+	{
+		if (!$this->ion_auth->logged_in())
+		{
+			redirect('auth', 'refresh');
+		}
+			$jenis = $this->input->post('jenis');
+
+			if($jenis=='pdf')
+			{
+				$paper                 = 'a4';
+				$orientation           = 'landscape';
+				$data['user']          = $this->ion_auth->user()->row();
+				$data['judul_halaman'] = 'Laporan Asset';
+				$id_kantor             = $this->input->post('id_kantor');
+				$id_ruangan            = $this->input->post('id_ruangan');
+				$data['laporan']       = $this->model_asset->laporan_asset_ruangan($id_kantor,$id_ruangan);
+				$data['lokasi']       = $this->model_asset->laporan_asset_ruangan($id_kantor,$id_ruangan)->row();
+				//$data['tanggal1']      = $tanggal_awal;
+				//$data['tanggal2']      = $tanggal_akhir;
+				$html                  = $this->load->view('laporan/cetak_laporan_ruangan',$data,TRUE);
+
+				$this->pdf->pdf_create($html,"Laporan Asset",$paper,$orientation);
+			}
+			elseif($jenis=='excel')
+			{
+				$id_kantor  = $this->input->post('id_kantor');
+				$id_ruangan = $this->input->post('id_ruangan');
+				$lokasi     = $this->model_asset->laporan_asset_ruangan($id_kantor,$id_ruangan)->row();
+
+		        $query = $this->db->query("SELECT
+		                   
+		                                        tbl_asset.kode_asset AS 'KODE ASSET',
+		                                        tbl_asset.nama_asset AS 'NAMA ASSET',
+		                                        tbl_kategori.nama_kategori AS KATEGORI,
+		                                        tbl_asset.tanggal_masuk AS 'TANGGAL MASUK',
+		                                        tbl_asset.tanggal_usia AS 'TANGGAL USIA',
+
+		                                        tbl_kantor.nama_kantor AS KANTOR,
+		                                        tbl_ruangan.nama_ruangan AS RUANGAN,
+		                                        tbl_asset.status_milik AS 'STATUS MILIK',
+		                                        tbl_asset.user_tambahasset AS 'DITAMBAHKAN OLEH',
+		                                        tbl_asset.kondisi AS KONDISI
+		                   
+		                                        FROM
+		                                        tbl_asset
+		                                        INNER JOIN tbl_kantor ON tbl_kantor.id = tbl_asset.id_kantor
+		                                        INNER JOIN tbl_ruangan ON tbl_ruangan.id = tbl_asset.id_ruangan
+		                                        INNER JOIN tbl_kategori ON tbl_kategori.id = tbl_asset.id_kategori
+		                                        WHERE tbl_asset.id_kantor = '$id_kantor' AND tbl_asset.id_ruangan = '$id_ruangan'
+												AND status_pemusnahan != 'musnah' ");
+		        if(!$query)
+		        return false;
+
+		        $this->load->library('excel');
+		        //activate worksheet number 1
+		        $this->excel->setActiveSheetIndex(0);
+		        //name the worksheet
+		        $fields = $query->list_fields();
+		        $col = 0;
+		        foreach ($fields as $field)
+		        {
+		             $this->excel->getActiveSheet()->setCellValueByColumnAndRow($col, 4, $field);
+		            $col++;
+		        }
+		        // Fetching the table data
+		        $row = 5;
+		        foreach($query->result() as $data)
+		        {
+		            $col = 0;
+		            foreach ($fields as $field)
+		            {
+		                 $this->excel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $data->$field);
+		                $col++;
+		            }
+		 
+		            $row++;
+		        }
+		        // Set Orientation, size and scaling
+		        $this->excel->setActiveSheetIndex(0);
+		        $this->excel->getActiveSheet()->getStyle('A1')->getFont()->setSize(16);
+		        $this->excel->getActiveSheet()->setCellValue('A1', 'LAPORAN DATA ASSET');
+		        $this->excel->getActiveSheet()->setCellValue('A2', ''.$lokasi->nama_kantor.' | '.$lokasi->nama_ruangan);
+		        //merge cell A1 until D1
+		        $this->excel->getActiveSheet()->mergeCells('A1:J1');
+		        $this->excel->getActiveSheet()->mergeCells('A2:J2');
+		        //set aligment to center for that merged cell (A1 to D1)
+		        $this->excel->getActiveSheet()->getStyle('A1:D1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+		        $this->excel->getActiveSheet()->getStyle('A2')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+
+
+		        $this->excel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
+		        $this->excel->getActiveSheet()->getPageSetup()->setPaperSize(PHPExcel_Worksheet_PageSetup::PAPERSIZE_A4);
+		        $this->excel->getActiveSheet()->getPageSetup()->setFitToPage(true);
+		        $this->excel->getActiveSheet()->getPageSetup()->setFitToWidth(1);
+		        $this->excel->getActiveSheet()->getPageSetup()->setFitToHeight(0);
+
+		        //set aligment to center for that merged cell (A1 to D1)
+		        $this->excel->getActiveSheet()->getStyle('A1')->getFont()->setBold(true);
+		        $this->excel->getActiveSheet()->getStyle('A4:J4')->getFont()->setBold(true);
+		        $this->excel->getActiveSheet()->getStyle('A4:J4')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+		        
+		         
+		        $filename='Laporan Asset.xls'; //save our workbook as this file name
+		        header('Content-Type: application/vnd.ms-excel'); //mime type
+		        header('Content-Disposition: attachment;filename="'.$filename.'"'); //tell browser what's the file name
+		        header('Cache-Control: max-age=0'); //no cache
+		                     
+		        //save it to Excel5 format (excel 2003 .XLS file), change this to 'Excel2007' (and adjust the filename extension, also the header mime type)
+		        //if you want to save it as .XLSX Excel 2007 format
+		        $objWriter = PHPExcel_IOFactory::createWriter($this->excel, 'Excel5');  
+		        //force user to download the Excel file without writing it to server's HD
+		        $objWriter->save('php://output');
+			}
+			
+	}
+
 
 	public function cetak_laporan()
 	{
@@ -718,6 +840,102 @@ class kelola_asset extends CI_Controller {
         //force user to download the Excel file without writing it to server's HD
         $objWriter->save('php://output');
     }
+
+
+    public function cetak_laporan_ruangan_excel()
+    {
+    	if (!$this->ion_auth->logged_in())
+		{
+			redirect('auth', 'refresh');
+		}
+		$id_kantor  = $this->input->post('id_kantor');
+		$id_ruangan = $this->input->post('id_ruangan');
+
+        $query = $this->db->query("SELECT
+                   
+                                        tbl_asset.kode_asset AS 'KODE ASSET',
+                                        tbl_asset.nama_asset AS 'NAMA ASSET',
+                                        tbl_kategori.nama_kategori AS KATEGORI,
+                                        tbl_asset.tanggal_masuk AS 'TANGGAL MASUK',
+                                        tbl_asset.tanggal_usia AS 'TANGGAL USIA',
+
+                                        tbl_kantor.nama_kantor AS KANTOR,
+                                        tbl_ruangan.nama_ruangan AS RUANGAN,
+                                        tbl_asset.status_milik AS 'STATUS MILIK',
+                                        tbl_asset.user_tambahasset AS 'DITAMBAHKAN OLEH',
+                                        tbl_asset.kondisi AS KONDISI
+                   
+                                        FROM
+                                        tbl_asset
+                                        INNER JOIN tbl_kantor ON tbl_kantor.id = tbl_asset.id_kantor
+                                        INNER JOIN tbl_ruangan ON tbl_ruangan.id = tbl_asset.id_ruangan
+                                        INNER JOIN tbl_kategori ON tbl_kategori.id = tbl_asset.id_kategori
+                                        WHERE tbl_asset.id_kantor = '$id_kantor' AND tbl_asset.id_ruangan = '$id_ruangan'
+										AND status_pemusnahan != 'musnah' ");
+        if(!$query)
+        return false;
+
+        $this->load->library('excel');
+        //activate worksheet number 1
+        $this->excel->setActiveSheetIndex(0);
+        //name the worksheet
+        $fields = $query->list_fields();
+        $col = 0;
+        foreach ($fields as $field)
+        {
+             $this->excel->getActiveSheet()->setCellValueByColumnAndRow($col, 4, $field);
+            $col++;
+        }
+        // Fetching the table data
+        $row = 5;
+        foreach($query->result() as $data)
+        {
+            $col = 0;
+            foreach ($fields as $field)
+            {
+                 $this->excel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $data->$field);
+                $col++;
+            }
+ 
+            $row++;
+        }
+        // Set Orientation, size and scaling
+        $this->excel->setActiveSheetIndex(0);
+        $this->excel->getActiveSheet()->getStyle('A1')->getFont()->setSize(16);
+        $this->excel->getActiveSheet()->setCellValue('A1', 'LAPORAN DATA ASSET');
+        $this->excel->getActiveSheet()->setCellValue('A2', 'Periode tanggan '.$tanggal_awal.' sampai '.$tanggal_akhir);
+        //merge cell A1 until D1
+        $this->excel->getActiveSheet()->mergeCells('A1:J1');
+        $this->excel->getActiveSheet()->mergeCells('A2:J2');
+        //set aligment to center for that merged cell (A1 to D1)
+        $this->excel->getActiveSheet()->getStyle('A1:D1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+        $this->excel->getActiveSheet()->getStyle('A2')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+
+
+        $this->excel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
+        $this->excel->getActiveSheet()->getPageSetup()->setPaperSize(PHPExcel_Worksheet_PageSetup::PAPERSIZE_A4);
+        $this->excel->getActiveSheet()->getPageSetup()->setFitToPage(true);
+        $this->excel->getActiveSheet()->getPageSetup()->setFitToWidth(1);
+        $this->excel->getActiveSheet()->getPageSetup()->setFitToHeight(0);
+
+        //set aligment to center for that merged cell (A1 to D1)
+        $this->excel->getActiveSheet()->getStyle('A1')->getFont()->setBold(true);
+        $this->excel->getActiveSheet()->getStyle('A4:J4')->getFont()->setBold(true);
+        $this->excel->getActiveSheet()->getStyle('A4:J4')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+        
+         
+        $filename='Laporan Asset.xls'; //save our workbook as this file name
+        header('Content-Type: application/vnd.ms-excel'); //mime type
+        header('Content-Disposition: attachment;filename="'.$filename.'"'); //tell browser what's the file name
+        header('Cache-Control: max-age=0'); //no cache
+                     
+        //save it to Excel5 format (excel 2003 .XLS file), change this to 'Excel2007' (and adjust the filename extension, also the header mime type)
+        //if you want to save it as .XLSX Excel 2007 format
+        $objWriter = PHPExcel_IOFactory::createWriter($this->excel, 'Excel5');  
+        //force user to download the Excel file without writing it to server's HD
+        $objWriter->save('php://output');
+    }
+
 
     public function cetak_laporan_mutasi_semua_excel()
     {

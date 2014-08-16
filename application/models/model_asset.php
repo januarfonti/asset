@@ -39,6 +39,39 @@ class model_asset extends CI_Model
         return $result;
 	}
 
+
+	function getKantorList_ruangan(){
+		$result = array();
+		$this->db->select('*');
+		$this->db->from('tbl_kantor');
+		$this->db->order_by('nama_kantor','ASC');
+		$array_keys_values = $this->db->get();
+        foreach ($array_keys_values->result() as $row)
+        {
+            $result[0]= '- Pilih Kantor -';
+            $result[$row->id]= $row->nama_kantor;
+        }
+        
+        return $result;
+	}
+
+	function getRuanganList_ruangan(){
+		$id_kantor = $this->input->post('id_kantor');
+		$result = array();
+		$this->db->select('*');
+		$this->db->from('tbl_ruangan');
+		$this->db->where('id_kantor',$id_kantor);
+		$this->db->order_by('nama_ruangan','ASC');
+		$array_keys_values = $this->db->get();
+        foreach ($array_keys_values->result() as $row)
+        {
+            $result[0]= '-Pilih Ruangan-';
+            $result[$row->id]= $row->nama_ruangan;
+        }
+        
+        return $result;
+	}
+
 	 public function ambil_asset($num,$offset){
 	 	$this->db->order_by('nama_asset', 'ASC');
     	$this->db->select('tbl_asset.id,tbl_asset.kode_asset,tbl_asset.nama_asset,tbl_kategori.nama_kategori,tbl_asset.tanggal_masuk,tbl_asset.tanggal_usia,tbl_kantor.nama_kantor,tbl_ruangan.nama_ruangan,tbl_asset.status_milik,tbl_asset.kondisi,tbl_asset.gambar');
@@ -153,6 +186,32 @@ class model_asset extends CI_Model
 								INNER JOIN tbl_kantor ON tbl_kantor.id = tbl_asset.id_kantor
 								INNER JOIN tbl_ruangan ON tbl_ruangan.id = tbl_asset.id_ruangan
 								INNER JOIN tbl_kategori ON tbl_kategori.id = tbl_asset.id_kategori  WHERE tanggal_masuk BETWEEN '$tanggal_awal' AND '$tanggal_akhir'
+								AND status_pemusnahan != 'musnah'
+								");
+    	return $query;
+    }
+
+    public function laporan_asset_ruangan($id_kantor,$id_ruangan){
+    	$query = $this->db->query("SELECT tbl_asset.id,
+								tbl_asset.kode_asset,
+								tbl_asset.nama_asset,
+								tbl_kategori.nama_kategori,
+								tbl_asset.tanggal_masuk,
+								tbl_asset.tanggal_usia,
+								tbl_kantor.nama_kantor,
+								tbl_ruangan.nama_ruangan,
+								tbl_asset.status_milik,
+								tbl_asset.kondisi,
+								tbl_asset.gambar,
+								tbl_asset.user_tambahasset,
+								tbl_asset.id_kantor,
+								tbl_asset.id_ruangan
+								FROM
+								tbl_asset
+								INNER JOIN tbl_kantor ON tbl_kantor.id = tbl_asset.id_kantor
+								INNER JOIN tbl_ruangan ON tbl_ruangan.id = tbl_asset.id_ruangan
+								INNER JOIN tbl_kategori ON tbl_kategori.id = tbl_asset.id_kategori  
+								WHERE  tbl_asset.id_kantor = '$id_kantor' AND tbl_asset.id_ruangan = '$id_ruangan'
 								AND status_pemusnahan != 'musnah'
 								");
     	return $query;
